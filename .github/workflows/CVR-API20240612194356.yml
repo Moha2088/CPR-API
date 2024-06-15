@@ -65,7 +65,7 @@ jobs:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
-        allow-no-subscriptions: false
+        allow-no-subscriptions: true
 
     - name: Download artifact from build job
       uses: actions/download-artifact@v3
