@@ -23,13 +23,19 @@ namespace CVR_API.Controllers
         public UsersController(IUserService service)
         {
             _service = service;
-        }
+        }   
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()   
         {
             var users = await _service.GetUsers();
+
+            if(!users.Any())
+            {
+                return NotFound("No users exist!");
+            }
+            
             return Ok(users);
         }
 
