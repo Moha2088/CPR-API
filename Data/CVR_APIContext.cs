@@ -14,6 +14,15 @@ namespace CVR_API.Data
         {
         }
 
-        public DbSet<CVR_API.Models.User> User { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.LoginUser)
+                .WithOne(u => u.User)
+                .HasForeignKey<LoginUser>(u => u.Id);
+        }
+
+        public DbSet<User> User { get; set; } = default!;
+        public DbSet<LoginUser> LoginUser { get; set; } = default!;
     }
 }

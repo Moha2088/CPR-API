@@ -9,7 +9,7 @@ public interface IRepository
     Task DeleteUser(Guid id);
     Task<IEnumerable<UserDTO>> GetUsers();
     Task<UserDTO> GetUser(Guid id);
-    Task<User> PostUser(User user);
+    Task<UserDTO> PostUser(User user);
     Task PutUser(Guid id, User user);
     bool UserExists(Guid id);
 }

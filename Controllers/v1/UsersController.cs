@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CVR_API.Models.Dtos;
 using CVR_API.Models;
-using CVR_API.Repository;
 using Microsoft.AspNetCore.Cors;
 using CVR_API.Services;
+using Asp.Versioning;
 
-namespace CVR_API.Controllers
+namespace CVR_API.Controllers.v1
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [EnableCors("MyPolicy")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -23,24 +21,24 @@ namespace CVR_API.Controllers
         public UsersController(IUserService service)
         {
             _service = service;
-        }   
+        }
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()   
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             var users = await _service.GetUsers();
 
-            if(!users.Any())
+            if (!users.Any())
             {
                 return NotFound("No users exist!");
             }
-            
+
             return Ok(users);
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]   
+        [HttpGet("{id}")]
         public async Task<ActionResult<UserDTO>> GetUser(Guid id)
         {
             var user = await _service.GetUser(id);
@@ -52,17 +50,17 @@ namespace CVR_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
-           await _service.PutUser(id, user);
-           return NoContent();
+            await _service.PutUser(id, user);
+            return NoContent();
         }
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<UserDTO>> PostUser(User user)
         {
             var userToPost = await _service.PostUser(user);
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUser", new { id = userToPost.Id }, userToPost);
         }
 
         // DELETE: api/Users/5

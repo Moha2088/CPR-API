@@ -4,6 +4,7 @@ using CVR_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CVR_API.Migrations
 {
     [DbContext(typeof(CVR_APIContext))]
-    partial class CVR_APIContextModelSnapshot : ModelSnapshot
+    [Migration("20240615155321_name_change")]
+    partial class name_change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,24 +24,6 @@ namespace CVR_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CVR_API.Models.LoginUser", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LoginUser");
-                });
 
             modelBuilder.Entity("CVR_API.Models.User", b =>
                 {
@@ -57,22 +42,6 @@ namespace CVR_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("CVR_API.Models.LoginUser", b =>
-                {
-                    b.HasOne("CVR_API.Models.User", "User")
-                        .WithOne("LoginUser")
-                        .HasForeignKey("CVR_API.Models.LoginUser", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CVR_API.Models.User", b =>
-                {
-                    b.Navigation("LoginUser");
                 });
 #pragma warning restore 612, 618
         }

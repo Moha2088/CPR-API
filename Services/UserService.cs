@@ -28,7 +28,7 @@ public class UserService : IUserService
         return await _repository.GetUsers();
     }
 
-    public async Task<User> PostUser(User user)
+    public async Task<UserDTO> PostUser(User user)
     {
         return await _repository.PostUser(user);
     }

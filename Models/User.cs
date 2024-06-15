@@ -9,5 +9,7 @@ public class User
 
     public string Name { get; set; } = null!;
 
-    public string CVR { get; set; } = null!;
+    public string CPR { get; set; } = null!;
+
+    public LoginUser? LoginUser { get; set; }
 }

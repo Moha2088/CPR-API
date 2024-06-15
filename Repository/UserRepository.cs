@@ -33,7 +33,7 @@ public class UserRepository : IRepository
 
     public async Task<IEnumerable<UserDTO>> GetUsers()
     {
-        var users = await _context.User.ToListAsync();
+        var users = await _context.User.ToListAsync();  
         return users.Select(user => _mapper.Map<UserDTO>(user));
     }
 
@@ -49,11 +49,11 @@ public class UserRepository : IRepository
         return _mapper.Map<UserDTO>(user);
     }
 
-    public async Task<User> PostUser(User user)
+    public async Task<UserDTO> PostUser(User user)
     {
         _context.User.Add(user);
         await _context.SaveChangesAsync();
-        return user;
+        return _mapper.Map<UserDTO>(user);
     }
 
     public async Task PutUser(Guid id, User user)
