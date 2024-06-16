@@ -10,6 +10,8 @@ using Microsoft.OpenApi.Models;
 using Asp.Versioning;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
+using System.Reflection;
+using Microsoft.Extensions.Options;
 
 namespace CVR_API;
 
@@ -43,6 +45,9 @@ public class Program
                     Url = new Uri("https://Github.com/Moha2088")
                 }
             });
+
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
         });
 
         builder.Services.AddApiVersioning(options =>

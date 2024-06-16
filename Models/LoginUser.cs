@@ -13,5 +13,6 @@ public class LoginUser
 
     public string Password { get; set; } = null!;
 
+    [JsonIgnore]
     public User User { get; set; } = null!;
 }

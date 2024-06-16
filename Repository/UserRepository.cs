@@ -11,13 +11,15 @@ public class UserRepository : IRepository
 {
     private readonly CVR_APIContext _context;
     private readonly IMapper _mapper;
+    private readonly ILogger<UserRepository> _logger;
 
-    public UserRepository(CVR_APIContext context, IMapper mapper)
+    public UserRepository(CVR_APIContext context, IMapper mapper, ILogger<UserRepository> logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
-        
+
     public async Task DeleteUser(Guid id)
     {
         var userToDelete = await _context.User.FindAsync(id);
@@ -33,7 +35,7 @@ public class UserRepository : IRepository
 
     public async Task<IEnumerable<UserDTO>> GetUsers()
     {
-        var users = await _context.User.ToListAsync();  
+        var users = await _context.User.ToListAsync();
         return users.Select(user => _mapper.Map<UserDTO>(user));
     }
 
@@ -51,8 +53,14 @@ public class UserRepository : IRepository
 
     public async Task<UserDTO> PostUser(User user)
     {
+        if (_context.User.Any(u => u.Name == user.Name))
+        {
+            throw new Exception($"A user named: {user.Name} already exists!");
+        }
+
         _context.User.Add(user);
         await _context.SaveChangesAsync();
+        _logger.LogInformation($"User with id: {user.Name} has been created ");
         return _mapper.Map<UserDTO>(user);
     }
 

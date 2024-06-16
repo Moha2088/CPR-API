@@ -11,5 +11,6 @@ public class User
 
     public string CPR { get; set; } = null!;
 
+    [JsonIgnore]
     public LoginUser? LoginUser { get; set; }
 }
