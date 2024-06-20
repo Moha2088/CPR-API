@@ -9,8 +9,7 @@ public class User
 
     public string Name { get; set; } = null!;
 
-    public string CPR { get; set; } = null!;
+    public string Password { get; set; } = null!;
 
-    [JsonIgnore]
-    public LoginUser? LoginUser { get; set; }
+    public string CPR { get; set; } = null!;
 }

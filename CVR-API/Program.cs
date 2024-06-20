@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using System.Reflection;
 using Microsoft.Extensions.Options;
+using CVR_API.Middleware;
 
 namespace CVR_API;
 
@@ -106,6 +107,7 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
+
         app.UseAuthorization();
 
         app.UseCors("MyPolicy");

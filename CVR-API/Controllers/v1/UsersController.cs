@@ -27,7 +27,7 @@ namespace CVR_API.Controllers.v1
 
         // GET: api/Users
         ///<summary>
-        /// Gets a list of all users onverted to a DTO
+        /// Gets a list of all users converted to a DTO
         ///</summary>
         ///<response code="200">Returns OK with a list of all users converted to a DTO</response>
         ///<response code="404">Returns NotFound if the list is empty</response>
@@ -91,6 +91,8 @@ namespace CVR_API.Controllers.v1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [Produces("application/json")]
+        [Consumes("application/json")]
         public async Task<ActionResult<UserDTO>> PostUser(User user)
         {
             var userToPost = await _service.PostUser(user);

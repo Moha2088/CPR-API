@@ -22,24 +22,6 @@ namespace CVR_API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CVR_API.Models.LoginUser", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LoginUser");
-                });
-
             modelBuilder.Entity("CVR_API.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -52,27 +34,19 @@ namespace CVR_API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Id")
+                        .IsUnique();
+
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("CVR_API.Models.LoginUser", b =>
-                {
-                    b.HasOne("CVR_API.Models.User", "User")
-                        .WithOne("LoginUser")
-                        .HasForeignKey("CVR_API.Models.LoginUser", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CVR_API.Models.User", b =>
-                {
-                    b.Navigation("LoginUser");
                 });
 #pragma warning restore 612, 618
         }

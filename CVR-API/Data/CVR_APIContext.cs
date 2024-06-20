@@ -9,20 +9,26 @@ namespace CVR_API.Data
 {
     public class CVR_APIContext : DbContext
     {
-        public CVR_APIContext (DbContextOptions<CVR_APIContext> options)
+        public CVR_APIContext(DbContextOptions<CVR_APIContext> options)
             : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.LoginUser)
-                .WithOne(u => u.User)
-                .HasForeignKey<LoginUser>(u => u.Id);
+            modelBuilder.Entity<User>(builder =>
+            {
+                builder.HasKey(p => p.Id);
+
+                builder.HasIndex(p => p.Id)
+                .IsUnique();
+
+                builder.Property(p => p.Name)
+                .IsRequired()
+                .HasMaxLength(10);
+            });
         }
 
         public DbSet<User> User { get; set; } = default!;
-        public DbSet<LoginUser> LoginUser { get; set; } = default!;
     }
 }

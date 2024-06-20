@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVR-API", "CVR-API.csproj", "{3315B3C8-EE68-4DB9-88C0-16CDC0704B1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVR-API", "CVR-API.csproj", "{3315B3C8-EE68-4DB9-88C0-16CDC0704B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVR-API.Tests", "..\CVR-API.Tests\CVR-API.Tests.csproj", "{17750C82-6FFE-4045-B913-6D3995744BDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3315B3C8-EE68-4DB9-88C0-16CDC0704B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3315B3C8-EE68-4DB9-88C0-16CDC0704B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3315B3C8-EE68-4DB9-88C0-16CDC0704B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17750C82-6FFE-4045-B913-6D3995744BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17750C82-6FFE-4045-B913-6D3995744BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17750C82-6FFE-4045-B913-6D3995744BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17750C82-6FFE-4045-B913-6D3995744BDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
