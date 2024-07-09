@@ -40,4 +40,18 @@ public class UsersRepositoryTests
         Assert.IsNotType<UserDTO>(result);
         await Assert.ThrowsAsync<Exception>(() => repository.Object.DeleteUser(Guid.NewGuid()));
     }
+
+    [Fact]
+    public async Task GetUsers_ShouldBeOfType_IEnumerableDTO()
+    {
+        var context = GetContext();
+        var mapper = new Mock<IMapper>().Object;
+        var logger = new Mock<ILogger<UserRepository>>().Object;
+        var repository = new Mock<UserRepository>(context, mapper, logger);
+
+        var result = repository.Object.GetUsers();
+
+        Assert.NotNull(result);
+        Assert.IsType<Task<IEnumerable<UserDTO>?>>(result);
+    }
 }
