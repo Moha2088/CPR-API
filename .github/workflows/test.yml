@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: cd CPR-API.Tests && dotnet restore
+      run: cd CVR-API.Tests && dotnet restore
     - name: Build
-      run: cd CPR-API.Tests && dotnet build --no-restore
+      run: cd CVR-API.Tests && dotnet build --no-restore
     - name: Test
-      run: cd CPR-API.Tests && dotnet test --no-build --verbosity normal
+      run: cd CVR-API.Tests && dotnet test --no-build --verbosity normal
