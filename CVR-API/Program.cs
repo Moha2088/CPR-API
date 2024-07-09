@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 using System.Reflection;
 using Microsoft.Extensions.Options;
-using CVR_API.Middleware;
 
 namespace CVR_API;
 
