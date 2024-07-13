@@ -52,6 +52,6 @@ public class UsersRepositoryTests
         var result = repository.Object.GetUsers();
 
         Assert.NotNull(result);
-        Assert.IsType<Task<IEnumerable<UserDTO>?>>(result);
+        await Assert.IsType<Task<IEnumerable<UserDTO>?>>(result);
     }
 }

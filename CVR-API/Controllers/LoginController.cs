@@ -35,9 +35,18 @@ public class LoginController : ControllerBase
 
     private User? FindExistingUser(LoginUser loginUser)
     {
-        return _context.User
+        try
+        {
+            return _context.User
                 .Where(x => x.Name == loginUser.UserName && x.Password == loginUser.Password)
                 .Single();
+        }
+
+        catch (Exception ex) 
+        {
+            _logger.LogError($"${ex.Message}");
+            return null;
+        }  
     }
 
     /// <summary>

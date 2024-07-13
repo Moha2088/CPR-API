@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVR-API", "CVR-API.csproj", "{3315B3C8-EE68-4DB9-88C0-16CDC0704B1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVR-API.Tests", "..\CVR-API.Tests\CVR-API.Tests.csproj", "{17750C82-6FFE-4045-B913-6D3995744BDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVR-API.Tests", "..\CVR-API.Tests\CVR-API.Tests.csproj", "{17750C82-6FFE-4045-B913-6D3995744BDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVR-API.Integrationtests", "..\CVR-API.Integrationtests\CVR-API.Integrationtests.csproj", "{538E16B3-F8CF-44F7-9EC7-3E0DF5BD7C4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{17750C82-6FFE-4045-B913-6D3995744BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17750C82-6FFE-4045-B913-6D3995744BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17750C82-6FFE-4045-B913-6D3995744BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{538E16B3-F8CF-44F7-9EC7-3E0DF5BD7C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{538E16B3-F8CF-44F7-9EC7-3E0DF5BD7C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{538E16B3-F8CF-44F7-9EC7-3E0DF5BD7C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{538E16B3-F8CF-44F7-9EC7-3E0DF5BD7C4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
