@@ -40,6 +40,7 @@
              Gets a user based on a specific id
             </summary>
             <response code="200">Returns OK and a DTO version of the object</response>
+            <response code ="404">Returns NotFound if the user could not be found</response>>
         </member>
         <member name="M:CVR_API.Controllers.v1.UsersController.PutUser(System.Guid,CVR_API.Models.User)">
             <summary>

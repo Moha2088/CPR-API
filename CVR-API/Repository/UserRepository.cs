@@ -42,12 +42,6 @@ public class UserRepository : IRepository
     public async Task<UserDTO> GetUser(Guid id)
     {
         var user = await _context.User.FindAsync(id);
-
-        if (user == null)
-        {
-            throw new Exception($"User with id: {id} does not exist!");
-        }
-
         return _mapper.Map<UserDTO>(user);
     }
 

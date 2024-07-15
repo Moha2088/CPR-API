@@ -51,11 +51,17 @@ namespace CVR_API.Controllers.v1
         /// Gets a user based on a specific id
         ///</summary>
         ///<response code="200">Returns OK and a DTO version of the object</response>
+        ///<response code ="404">Returns NotFound if the user could not be found</response>>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UserDTO>> GetUser(Guid id)
         {
             var user = await _service.GetUser(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
             return Ok(user);
         }
 
