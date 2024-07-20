@@ -21,7 +21,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddDbContext<CVR_APIContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("CVR_APIContext") ?? throw new InvalidOperationException("Connection string 'CVR_APIContext' not found.")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString") ?? throw new InvalidOperationException("Connection string 'MyConnectionString' not found.")));
 
         // Add services to the container.
         builder.Services.AddScoped<IRepository, UserRepository>();

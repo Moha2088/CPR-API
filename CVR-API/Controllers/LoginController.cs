@@ -84,6 +84,11 @@ public class LoginController : ControllerBase
         return NotFound($"No user exists with the name: {loginUser.UserName} and the password: {loginUser.Password}");
     }
 
+    private bool IsMissingOrIsNotBearer(string headerValue)
+    {
+        return string.IsNullOrEmpty(headerValue) || !headerValue.StartsWith("Bearer");
+    }
+
     /// <summary>
     ///  Gets the full information about a user if the attached token is valid
     /// </summary>
@@ -94,15 +99,22 @@ public class LoginController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [Produces("application/json")]
-    public IActionResult fullUserDetails([FromHeader] string token, [FromBody] LoginUser loginUser)
+    public IActionResult fullUserDetails([FromHeader] string authorizationHeaderValue, [FromBody] LoginUser loginUser)
     {
+        if (IsMissingOrIsNotBearer(authorizationHeaderValue))
+        {
+            return Unauthorized("Token is missing or is invalid!");
+        }
+
+        var token = authorizationHeaderValue.Substring("Bearer ".Length).Trim();
+        _logger.LogInformation($"Token value: {token}");
         var validationParameters = _jwtOptions.Value.TokenValidationParameters;
         var tokenHandler = new JwtSecurityTokenHandler();
 
         try
         {
             var validationResult = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken result);
-            return validationResult != null ? Ok(FindExistingUser(loginUser)) : Unauthorized();
+            return validationResult != null ? Ok(FindExistingUser(loginUser)) : Unauthorized("Token validation failed!");
         }
 
         catch (SecurityTokenException e)
